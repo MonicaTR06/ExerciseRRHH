@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 if(mensajeError.isEmpty()){
                     //Campos llenados correctamente
                     int horasRegulares = obtenerHorasTrabajadasHorarioRegular(textoHoraIngreso, textoHoraSalida);
-                    int horasAl20 = obtenerHorasTrabajadasAl20(textoHoraIngreso, textoHoraSalida);
+                    int horasAl20 = obtenerHorasTrabajadasAl20(textoHoraIngreso, textoHoraSalida); //Monica
                     int horasAl30 = obtenerHorasTrabajadasAl30(textoHoraIngreso, textoHoraSalida);
                     int horasTotales = horasRegulares + horasAl20+ horasAl30;
 
