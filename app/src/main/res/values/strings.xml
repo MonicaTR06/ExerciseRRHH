@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BoletaDePago</string>
+    <string name="reporte_de_horas_brabajadas">Reporte de Horas Trabajadas</string>
+    <string name="ingrese_su_sueldo_bruto">Ingrese Su Sueldo Bruto :</string>
+    <string name="ingrese_la_hora_de_ingreso">Ingrese la Hora de Ingreso : </string>
+    <string name="ingrese_su_hora_de_salida">Ingrese su Hora de Salida : </string>
+    <string name="calcular_pago">Calcular Pago : </string>
+    <string name="reporte_final">Reporte Final : </string>
+    <string name="horas_totales">Horas Totales : </string>
+    <string name="horas_efectivas">Horas Efectivas : </string>
+    <string name="horas_extra_al_20">Horas Extra al 20% : </string>
+    <string name="horas_extra_al_30">Horas Extra al 30% : </string>
+    <string name="pago_de_horas_extras_al_20">Pago de Horas Extras al 20% : </string>
+    <string name="pago_de_horas_extras_al_30">Pago de Horas Extras al 30% : </string>
+    <string name="monto_total_a_pagar">Monto Total a Pagar : </string>
+
+
+</resources>
