@@ -46,20 +46,23 @@ public class MainActivity extends AppCompatActivity {
                 String textoSueldo = edt_sueldoBruto.getText().toString();
 
                 String mensajeError = "";
+
                 if(!horaValida(textoHoraIngreso)){
-                    mensajeError = "Hora de Ingreso,";
+                    mensajeError = "Hora de Ingreso, ";
                 }
 
                 if(!horaValida(textoHoraSalida)){
-                    mensajeError = mensajeError + " Hora de Salida,";
+                    mensajeError = mensajeError + "Hora de Salida, ";
                 }
 
                 if(!sueldoValido(textoSueldo)){
                     mensajeError = mensajeError + "Sueldo";
                 }
 
-                if(!validarHorario(textoHoraIngreso, textoHoraSalida)){
-                    mensajeError = mensajeError + "La hora de salida no puede ser menor a la hora de ingreso";
+                if(mensajeError.isEmpty() && !validarHorario(textoHoraIngreso, textoHoraSalida)){
+                        mensajeError = "La hora de salida no puede ser menor o igual a la hora de ingreso";
+                }else if (!mensajeError.isEmpty()){
+                    mensajeError = "Debes llenar correctamente los siguientes campos : "+mensajeError;
                 }
 
                 if(mensajeError.isEmpty()){
@@ -90,10 +93,8 @@ public class MainActivity extends AppCompatActivity {
                     txv_MontoaPagar.setText(getString(R.string.monto_total_a_pagar) + totalPagoDelDia );
                 }else{
 
-                    //Marcos
+                    Toast.makeText(MainActivity.this, mensajeError, Toast.LENGTH_LONG).show();
 
-                    //Mostrar mensaje de error
-                    //Toast Corrija los siguientes campos: + mensajeError
                 }
             }
         });
@@ -102,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean validarHorario(String textoHoraIngreso, String textoHoraSalida) { // Nonis
         //Valida que el ingreso no supere la hora de salida y no sea igual
-        return false;
+        return true;
     }
 
-    private int obtenerHorasEfectivas(String textoHoraIngreso, String textoHoraSalida) { // Marcos
+    private int obtenerHorasEfectivas(String textoHoraIngreso, String textoHoraSalida) { // Nonis
         return 0;
     }
 
