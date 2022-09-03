@@ -120,7 +120,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int obtenerHorasTrabajadasHorarioRegular(String textoHoraIngreso, String textoHoraSalida) {
-        return 0;
+
+        int horasTrabajadasHorarioRegular = 0;
+        final int horarioEmpunto = 0, horaIngresoRegular = 9, horaSalidaRegular = 18, horaAlmuerzo = 13 , hora = 1;
+
+        String[] arrayHoraIngresada = textoHoraIngreso.split(":");
+        int horaDeIngreso = Integer.parseInt(arrayHoraIngresada[0]);
+        int minutoDeIngreso = Integer.parseInt(arrayHoraIngresada[1]);
+
+        String[] arrayHoraSalida = textoHoraSalida.split(":");
+        int horaDeSalida = Integer.parseInt(arrayHoraSalida[0]);
+
+        if(horaDeIngreso<horaIngresoRegular){
+            horaDeIngreso = horaIngresoRegular;
+            minutoDeIngreso = horarioEmpunto;
+        }
+
+        if(minutoDeIngreso > horarioEmpunto){
+            horaDeIngreso = horaDeIngreso + hora;
+        }
+
+        if(horaDeSalida > horaSalidaRegular){
+            horaDeSalida = horaSalidaRegular;
+        }
+
+        horasTrabajadasHorarioRegular = horaDeSalida - horaDeIngreso;
+
+        if (horaDeIngreso <= horaAlmuerzo){
+            horasTrabajadasHorarioRegular = horasTrabajadasHorarioRegular - hora;
+        }
+
+        return horasTrabajadasHorarioRegular;
     }
 
     private double obtenerSueldoHoraRegular(String textoSueldo) {
