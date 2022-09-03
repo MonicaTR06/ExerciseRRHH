@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     //Campos llenados correctamente
                     int horasRegulares = obtenerHorasTrabajadasHorarioRegular(textoHoraIngreso, textoHoraSalida);
                     int horasAl20 = obtenerHorasTrabajadasAl20(textoHoraIngreso, textoHoraSalida);
-                    int horasAl30 = obtenerHorasTrabajadasAl30(textoHoraIngreso, textoHoraSalida);
+                    int horasAl30 = obtenerHorasTrabajadasAl30(textoHoraSalida);
                     int horasTotales = horasRegulares + horasAl20+ horasAl30;
 
                     int horasEfectivas = obtenerHorasEfectivas(textoHoraIngreso, textoHoraSalida);
@@ -104,8 +104,15 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
-    private int obtenerHorasTrabajadasAl30(String textoHoraIngreso, String textoHoraSalida) {
-        return 0;
+    private int obtenerHorasTrabajadasAl30( String textoHoraSalida) {
+        String ArrayHSalida[]= textoHoraSalida.split(":");
+        int horasSalida = Integer.parseInt(ArrayHSalida[0]);
+        int obtenerHorasTrabajadasAl30 = 0;
+        if(horasSalida >22){
+            obtenerHorasTrabajadasAl30 = horasSalida -22;
+        }
+
+        return obtenerHorasTrabajadasAl30;
     }
 
     private int obtenerHorasTrabajadasAl20(String textoHoraIngreso, String textoHoraSalida) {
