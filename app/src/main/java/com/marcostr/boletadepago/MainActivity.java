@@ -89,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
                     txv_PagoHorasExtra30.setText(getString(R.string.pago_de_horas_extras_al_30) + totalPagarAl30);
                     txv_MontoaPagar.setText(getString(R.string.monto_total_a_pagar) + totalPagoDelDia );
                 }else{
+
+                    //Marcos
+
                     //Mostrar mensaje de error
                     //Toast Corrija los siguientes campos: + mensajeError
                 }
@@ -97,12 +100,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private boolean validarHorario(String textoHoraIngreso, String textoHoraSalida) {
-        //Valida que el ingreso no supere la hora de salida
+    private boolean validarHorario(String textoHoraIngreso, String textoHoraSalida) { // Nonis
+        //Valida que el ingreso no supere la hora de salida y no sea igual
         return false;
     }
 
-    private int obtenerHorasEfectivas(String textoHoraIngreso, String textoHoraSalida) {
+    private int obtenerHorasEfectivas(String textoHoraIngreso, String textoHoraSalida) { // Marcos
         return 0;
     }
 
@@ -168,16 +171,16 @@ public class MainActivity extends AppCompatActivity {
         return horasTrabajadasHorarioRegular;
     }
 
-    private double obtenerSueldoHoraRegular(String textoSueldo) {
+    private double obtenerSueldoHoraRegular(String textoSueldo) { // Moni
         // usar horasMensuales
         return 0;
     }
 
-    private double obtenerSueldoHoraAl30(double sueldoHoraRegular) {
+    private double obtenerSueldoHoraAl30(double sueldoHoraRegular) { // Moni
         return 0;
     }
 
-    private double obtenerSueldoHoraAl20(double sueldoHoraRegular) {
+    private double obtenerSueldoHoraAl20(double sueldoHoraRegular) { // Moni
         return 0;
     }
 
