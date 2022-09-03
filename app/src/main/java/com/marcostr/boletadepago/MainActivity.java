@@ -98,13 +98,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean validarHorario(String textoHoraIngreso, String textoHoraSalida) {
-        //Valida que el ingreso no supere la hora de salida
-        return false;
+        String ArrayHIngreso[]= textoHoraIngreso.split(":");
+        String ArrayHSalida[]= textoHoraSalida.split(":");
+
+        int horaIngreso = Integer.parseInt(ArrayHIngreso[0]);
+        int horaSalida = Integer.parseInt(ArrayHSalida[0]);
+
+        boolean validarHorario = false;
+        if(horaIngreso < horaSalida  ){
+            validarHorario = true;
+        }
+
+        //Valida que el ingreso no supere la hora de salida ni que no sea la misma hora
+        return validarHorario;
     }
 
     private int obtenerHorasEfectivas(String textoHoraIngreso, String textoHoraSalida) {
-        return 0;
+        String ArrayHIngreso[]= textoHoraIngreso.split(":");
+        String ArrayHSalida[]= textoHoraSalida.split(":");
+
+        int horaIngreso = Integer.parseInt(ArrayHIngreso[0]);
+        int horaSalida = Integer.parseInt(ArrayHSalida[0]);
+        int horasCompletas =horaSalida - horaIngreso;
+        int obtenerHorasEfectivas= 0;
+        if(horaIngreso <13){
+            if(horaSalida > 13 ){
+                obtenerHorasEfectivas = horasCompletas -1;
+            }else {
+                obtenerHorasEfectivas =horasCompletas;
+            }
+        }else {
+            if(horaIngreso > 14){
+                obtenerHorasEfectivas =horasCompletas;
+            }else{
+                obtenerHorasEfectivas = horasCompletas -1;
+            }
+        }
+        return obtenerHorasEfectivas;
     }
+    // si a ingresado la entrada < 13 y la salida <
 
     private int obtenerHorasTrabajadasAl30( String textoHoraSalida) {
         String ArrayHSalida[]= textoHoraSalida.split(":");
@@ -169,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private double obtenerSueldoHoraRegular(String textoSueldo) {
+
         // usar horasMensuales
         return 0;
     }
