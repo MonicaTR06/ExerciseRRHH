@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final int horasMensuales = 160;
     private final int horaSalidaRegular = 18;
-
     private final int horaInicioAl30 = 22;
 
     EditText edt_sueldoBruto, edt_HoradeIngreso, edt_HoradeSalida;
@@ -46,20 +45,23 @@ public class MainActivity extends AppCompatActivity {
                 String textoSueldo = edt_sueldoBruto.getText().toString();
 
                 String mensajeError = "";
+
                 if(!horaValida(textoHoraIngreso)){
-                    mensajeError = "Hora de Ingreso,";
+                    mensajeError = "Hora de Ingreso, ";
                 }
 
                 if(!horaValida(textoHoraSalida)){
-                    mensajeError = mensajeError + " Hora de Salida,";
+                    mensajeError = mensajeError + "Hora de Salida, ";
                 }
 
                 if(!sueldoValido(textoSueldo)){
                     mensajeError = mensajeError + "Sueldo";
                 }
 
-                if(!validarHorario(textoHoraIngreso, textoHoraSalida)){
-                    mensajeError = mensajeError + "La hora de salida no puede ser menor a la hora de ingreso";
+                if(mensajeError.isEmpty() && !validarHorario(textoHoraIngreso, textoHoraSalida)){
+                        mensajeError = "La hora de salida no puede ser menor o igual a la hora de ingreso";
+                }else if (!mensajeError.isEmpty()){
+                    mensajeError = "Debes llenar correctamente los siguientes campos : "+mensajeError;
                 }
 
                 if(mensajeError.isEmpty()){
@@ -89,8 +91,9 @@ public class MainActivity extends AppCompatActivity {
                     txv_PagoHorasExtra30.setText(getString(R.string.pago_de_horas_extras_al_30) + totalPagarAl30);
                     txv_MontoaPagar.setText(getString(R.string.monto_total_a_pagar) + totalPagoDelDia );
                 }else{
-                    //Mostrar mensaje de error
-                    //Toast Corrija los siguientes campos: + mensajeError
+
+                    Toast.makeText(MainActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+
                 }
             }
         });
@@ -136,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return obtenerHorasEfectivas;
     }
-    // si a ingresado la entrada < 13 y la salida <
 
     private int obtenerHorasTrabajadasAl30( String textoHoraSalida) {
         String ArrayHSalida[]= textoHoraSalida.split(":");
@@ -200,18 +202,19 @@ public class MainActivity extends AppCompatActivity {
         return horasTrabajadasHorarioRegular;
     }
 
-    private double obtenerSueldoHoraRegular(String textoSueldo) {
-
-        // usar horasMensuales
-        return 0;
+    private double obtenerSueldoHoraRegular(String textoSueldo) { // Moni
+        double sueldo = Double.parseDouble(textoSueldo);
+        return sueldo / horasMensuales;
     }
 
-    private double obtenerSueldoHoraAl30(double sueldoHoraRegular) {
-        return 0;
+    private double obtenerSueldoHoraAl30(double sueldoHoraRegular) { // Moni
+        final double porcentajeAdicional = 0.3;
+        return sueldoHoraRegular + (sueldoHoraRegular * porcentajeAdicional);
     }
 
-    private double obtenerSueldoHoraAl20(double sueldoHoraRegular) {
-        return 0;
+    private double obtenerSueldoHoraAl20(double sueldoHoraRegular) { // Moni
+        final double porcentajeAdicional = 0.2;
+        return sueldoHoraRegular + (sueldoHoraRegular * porcentajeAdicional);
     }
 
     private boolean horaValida(String horaIngresada){
