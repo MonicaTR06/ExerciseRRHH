@@ -172,16 +172,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private double obtenerSueldoHoraRegular(String textoSueldo) { // Moni
-        // usar horasMensuales
-        return 0;
+        double sueldo = Double.parseDouble(textoSueldo);
+        return sueldo / horasMensuales;
     }
 
     private double obtenerSueldoHoraAl30(double sueldoHoraRegular) { // Moni
-        return 0;
+        final double porcentajeAdicional = 0.3;
+        return sueldoHoraRegular + (sueldoHoraRegular * porcentajeAdicional);
     }
 
     private double obtenerSueldoHoraAl20(double sueldoHoraRegular) { // Moni
-        return 0;
+        final double porcentajeAdicional = 0.2;
+        return sueldoHoraRegular + (sueldoHoraRegular * porcentajeAdicional);
     }
 
     private boolean horaValida(String horaIngresada){
