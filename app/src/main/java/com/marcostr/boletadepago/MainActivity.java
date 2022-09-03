@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private final int horaSalidaRegular = 18;
     private final int horaInicioAl30 = 22;
 
+    private final int horarioEmpunto = 0, horaIngresoRegular = 9, horaAlmuerzo = 13 , hora = 1; //
+
     EditText edt_sueldoBruto, edt_HoradeIngreso, edt_HoradeSalida;
     Button button_CalcularPago;
     TextView txv_HotasTotales, txv_HorasEfectivas, txv_HorasExtra20, txv_HorasExtra30, txv_PagoHorasExtra20, txv_PagoHorasExtra30, txv_MontoaPagar;
@@ -112,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
             validarHorario = true;
         }
 
-        //Valida que el ingreso no supere la hora de salida ni que no sea la misma hora
         return validarHorario;
     }
 
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         int horaIngreso = Integer.parseInt(ArrayHIngreso[0]);
         int horaSalida = Integer.parseInt(ArrayHSalida[0]);
-        int horasCompletas =horaSalida - horaIngreso;
+        int horasCompletas = horaSalida - horaIngreso;
         int obtenerHorasEfectivas= 0;
         if(horaIngreso <13){
             if(horaSalida > 13 ){
@@ -171,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
     private int obtenerHorasTrabajadasHorarioRegular(String textoHoraIngreso, String textoHoraSalida) {
 
         int horasTrabajadasHorarioRegular = 0;
-        final int horarioEmpunto = 0, horaIngresoRegular = 9, horaSalidaRegular = 18, horaAlmuerzo = 13 , hora = 1;
 
         String[] arrayHoraIngresada = textoHoraIngreso.split(":");
         int horaDeIngreso = Integer.parseInt(arrayHoraIngresada[0]);
