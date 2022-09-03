@@ -3,6 +3,7 @@ package com.marcostr.boletadepago;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private final int horasMensuales = 160;
+    private final int horaSalidaRegular = 18;
+
+    private final int horaInicioAl30 = 22;
     
     EditText edt_sueldoBruto, edt_HoradeIngreso, edt_HoradeSalida;
     Button button_CalcularPago;
@@ -61,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mensajeError.isEmpty()){
                     //Campos llenados correctamente
-                    int horasRegulares = obtenerHorasTrabajadasHorarioRegular(textoHoraIngreso, textoHoraSalida);
-                    int horasAl20 = obtenerHorasTrabajadasAl20(textoHoraIngreso, textoHoraSalida); //Monica
-                    int horasAl30 = obtenerHorasTrabajadasAl30(textoHoraIngreso, textoHoraSalida);
+                    int horasRegulares = obtenerHorasTrabajadasHorarioRegular(textoHoraIngreso, textoHoraSalida);//Matu
+                    int horasAl20 = obtenerHorasTrabajadasAl20(textoHoraSalida); //Monica
+                    int horasAl30 = obtenerHorasTrabajadasAl30(textoHoraIngreso, textoHoraSalida);//Nonis
                     int horasTotales = horasRegulares + horasAl20+ horasAl30;
 
                     int horasEfectivas = obtenerHorasEfectivas(textoHoraIngreso, textoHoraSalida);
@@ -89,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                     //Mostrar mensaje de error
                     //Toast Corrija los siguientes campos: + mensajeError
                 }
-
             }
         });
 
@@ -108,8 +111,21 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
-    private int obtenerHorasTrabajadasAl20(String textoHoraIngreso, String textoHoraSalida) {
-        return 0;
+    private int obtenerHorasTrabajadasAl20(String textoHoraSalida) {
+        int horasAl20 = 0;
+
+        String[] arrayHoraSalida = textoHoraSalida.split(":");
+        int horaDeSalida = Integer.parseInt(arrayHoraSalida[0]);
+
+        if(horaDeSalida > horaInicioAl30){
+            int horas30 = (horaDeSalida - horaInicioAl30);
+            horaDeSalida = horaDeSalida - horas30;
+        }
+
+        if(horaDeSalida > horaSalidaRegular){
+            horasAl20 =  horaDeSalida - horaSalidaRegular;
+        }
+        return horasAl20;
     }
 
     private int obtenerHorasTrabajadasHorarioRegular(String textoHoraIngreso, String textoHoraSalida) {
