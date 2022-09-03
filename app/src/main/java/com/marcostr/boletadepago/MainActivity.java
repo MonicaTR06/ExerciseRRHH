@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final int horasMensuales = 160;
     private final int horaSalidaRegular = 18;
-
     private final int horaInicioAl30 = 22;
 
     EditText edt_sueldoBruto, edt_HoradeIngreso, edt_HoradeSalida;
