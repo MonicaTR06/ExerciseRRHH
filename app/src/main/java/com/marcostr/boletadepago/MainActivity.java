@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                     double pagoxHoraRegular = obtenerSueldoHoraRegular(textoSueldo);
                     double pagoxHoraAl20 = obtenerSueldoHoraAl20(pagoxHoraRegular);
-                    double pagoxHoraAl30 = obtenerSueldoHoraAl30(pagoxHoraRegular); // nonis
+                    double pagoxHoraAl30 = obtenerSueldoHoraAl30(pagoxHoraRegular);
 
                     double totalPagarAl20 = horasAl20 * pagoxHoraAl20;
                     double totalPagarAl30 = horasAl30 * pagoxHoraAl30;
