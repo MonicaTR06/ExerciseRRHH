@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private final int horaSalidaRegular = 18;
     private final int horaInicioAl30 = 22;
 
-    private final int horarioEmpunto = 0, horaIngresoRegular = 9, horaAlmuerzo = 13 , hora = 1; //
+    private final int horarioEmpunto = 0, horaIngresoRegular = 9, horaAlmuerzo = 13 , hora = 1;
 
     EditText edt_sueldoBruto, edt_HoradeIngreso, edt_HoradeSalida;
     Button button_CalcularPago;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     int horasRegulares = obtenerHorasTrabajadasHorarioRegular(textoHoraIngreso, textoHoraSalida);
                     int horasAl20 = obtenerHorasTrabajadasAl20(textoHoraSalida); //Monica
                     int horasAl30 = obtenerHorasTrabajadasAl30(textoHoraSalida);
-                    int horasTotales = horasRegulares + horasAl20+ horasAl30;
+                    int horasTotales = obtenerHorasTotales(textoHoraIngreso, textoHoraSalida);
 
                     int horasEfectivas = obtenerHorasEfectivas(textoHoraIngreso, textoHoraSalida);
 
@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }
+
+
         });
 
     }
@@ -117,12 +119,33 @@ public class MainActivity extends AppCompatActivity {
         return validarHorario;
     }
 
+    private int obtenerHorasTotales(String textoHoraIngreso, String textoHoraSalida) {
+        int horasTotales = 0;
+
+        String[] arrayHoraIngresada = textoHoraIngreso.split(":");
+        int horaDeIngreso = Integer.parseInt(arrayHoraIngresada[0]);
+        int minutoDeIngreso = Integer.parseInt(arrayHoraIngresada[1]);
+
+        String[] arrayHoraSalida = textoHoraSalida.split(":");
+        int horaDeSalida = Integer.parseInt(arrayHoraSalida[0]);
+
+        horaDeIngreso = ValidarIngresoyTardanza(horaDeIngreso,minutoDeIngreso);
+
+        horasTotales = horaDeSalida - horaDeIngreso;
+
+        return horasTotales;
+    }
+
     private int obtenerHorasEfectivas(String textoHoraIngreso, String textoHoraSalida) {
         String ArrayHIngreso[]= textoHoraIngreso.split(":");
         String ArrayHSalida[]= textoHoraSalida.split(":");
 
         int horaIngreso = Integer.parseInt(ArrayHIngreso[0]);
+        int minutoIngreso = Integer.parseInt(ArrayHIngreso[1]);
         int horaSalida = Integer.parseInt(ArrayHSalida[0]);
+
+        horaIngreso = ValidarIngresoyTardanza(horaIngreso,minutoIngreso);
+
         int horasCompletas = horaSalida - horaIngreso;
         int obtenerHorasEfectivas= 0;
         if(horaIngreso <13){
@@ -180,22 +203,17 @@ public class MainActivity extends AppCompatActivity {
         String[] arrayHoraSalida = textoHoraSalida.split(":");
         int horaDeSalida = Integer.parseInt(arrayHoraSalida[0]);
 
-        if(horaDeIngreso<horaIngresoRegular){
-            horaDeIngreso = horaIngresoRegular;
-            minutoDeIngreso = horarioEmpunto;
-        }
+        horaDeIngreso = ValidarIngresoyTardanza(horaDeIngreso,minutoDeIngreso);
 
-        if(minutoDeIngreso > horarioEmpunto){
-            horaDeIngreso = horaDeIngreso + hora;
-        }
-
+        //hora de salida es salida regular 18:00
         if(horaDeSalida > horaSalidaRegular){
             horaDeSalida = horaSalidaRegular;
         }
 
         horasTrabajadasHorarioRegular = horaDeSalida - horaDeIngreso;
 
-        if (horaDeIngreso <= horaAlmuerzo){
+        // descuento si hay hora de almuerzo
+        if (horaDeIngreso <= horaAlmuerzo && horaDeSalida > horaAlmuerzo ){ // 13
             horasTrabajadasHorarioRegular = horasTrabajadasHorarioRegular - hora;
         }
 
@@ -254,6 +272,24 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception ex){
             return false;
         }
+    }
+
+    public int ValidarIngresoyTardanza (int horaDeIngreso, int minutoDeIngreso){
+
+        int horaIngresoValida = horaDeIngreso;
+
+        // hora de ingreso no sea menor a la hora de ingreso regular 9:00
+        if(horaDeIngreso<horaIngresoRegular){
+            horaIngresoValida = horaIngresoRegular; // 9
+            minutoDeIngreso = horarioEmpunto; // 00
+        }
+
+        // hora empunto o tarde
+        if(minutoDeIngreso > horarioEmpunto){ //0
+            horaIngresoValida = horaDeIngreso + hora;
+        }
+
+        return horaIngresoValida;
     }
 
 }
