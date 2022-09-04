@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean horaValida(String horaIngresada){
         boolean horaValida = false;
         int hora, minutos;
-        if(horaIngresada.length() == 5 ){
+        if(horaIngresada.length() == 5 && horaIngresada.contains(":")){
             String[] arrayHora = horaIngresada.split(":");
             hora = Integer.parseInt(arrayHora[0]);
             minutos = Integer.parseInt(arrayHora[1]);
