@@ -50,14 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!horaValida(textoHoraIngreso)){
                     mensajeError = "Hora de Ingreso, ";
+                    edt_HoradeIngreso.setText("");
                 }
 
                 if(!horaValida(textoHoraSalida)){
                     mensajeError = mensajeError + "Hora de Salida, ";
+                    edt_HoradeSalida.setText("");
                 }
 
                 if(!sueldoValido(textoSueldo)){
                     mensajeError = mensajeError + "Sueldo";
+                    edt_sueldoBruto.setText("");
                 }
 
                 if(mensajeError.isEmpty() && !validarHorario(textoHoraIngreso, textoHoraSalida)){
@@ -95,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
 
                     Toast.makeText(MainActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+
 
                 }
             }
@@ -147,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         horaIngreso = ValidarIngresoyTardanza(horaIngreso,minutoIngreso);
 
         int horasCompletas = horaSalida - horaIngreso;
-        int obtenerHorasEfectivas= 0;
+        int obtenerHorasEfectivas= horasCompletas;
         if(horaIngreso <13){
             if(horaSalida > 13 ){
                 obtenerHorasEfectivas = horasCompletas -1;
