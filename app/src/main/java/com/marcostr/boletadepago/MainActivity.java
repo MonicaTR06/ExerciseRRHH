@@ -246,8 +246,8 @@ public class MainActivity extends AppCompatActivity {
             String[] arrayHora = horaIngresada.split(":");
             hora = Integer.parseInt(arrayHora[0]);
             minutos = Integer.parseInt(arrayHora[1]);
-            if(hora >= 1 && hora <= 24){
-                if(minutos>=0 && minutos<60) {
+            if(arrayHora[0].length() == 2 && hora >= 1 && hora <= 24){
+                if(arrayHora[1].length() == 2 &&  minutos>=0 && minutos<60 ) {
                     horaValida = true;
                 }else{
                     horaValida = false;
