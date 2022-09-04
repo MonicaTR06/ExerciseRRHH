@@ -267,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
             if(sueldoBrutovalido < 0){
                 return false;
             }
-
             return true;
         }catch (Exception ex){
             return false;
