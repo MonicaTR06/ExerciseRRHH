@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean horaValida(String horaIngresada){
         boolean horaValida = false;
         int hora, minutos;
-        if(horaIngresada.length() == 5 && horaIngresada.contains(":")){
+        if(contarCaracteres(horaIngresada, ":") == 1 && horaIngresada.length() == 5 && horaIngresada.contains(":")){
             String[] arrayHora = horaIngresada.split(":");
             hora = Integer.parseInt(arrayHora[0]);
             minutos = Integer.parseInt(arrayHora[1]);
@@ -295,4 +295,15 @@ public class MainActivity extends AppCompatActivity {
         return horaIngresoValida;
     }
 
+    //Funcion para contar cuantas veces se repite un simbolo en una cadena de texto
+    public int contarCaracteres(String cadena, String simbolo){
+        int contador = 0;
+
+        for (int i =0; i< cadena.length(); i++) {
+            if( String.valueOf(cadena.charAt(i)).equals(simbolo)  ){
+                contador = contador +1;
+            }
+        }
+        return contador;
+    }
 }
