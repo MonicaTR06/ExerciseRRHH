@@ -266,6 +266,11 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
 
+            if(String.valueOf(sueldoBruto.charAt(0)).equals("0")){
+                return false;
+            }
+
+
             if(String.valueOf(sueldoBruto.charAt(0)).equals(".")){
                 return false;
             }
