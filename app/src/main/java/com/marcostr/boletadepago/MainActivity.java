@@ -97,12 +97,11 @@ public class MainActivity extends AppCompatActivity {
                     txv_MontoaPagar.setText(getString(R.string.monto_total_a_pagar) + totalPagoDelDia );
                 }else{
 
-                    Toast.makeText(MainActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                   Toast.makeText(MainActivity.this, mensajeError, Toast.LENGTH_LONG).show();
 
 
                 }
             }
-
 
         });
 
@@ -263,8 +262,8 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean sueldoValido(String sueldoBruto) {
         try {
-            if(sueldoBruto.isEmpty()){
-               return false;
+            if (sueldoBruto.isEmpty()) {
+                return false;
             }
 
             if(String.valueOf(sueldoBruto.charAt(0)).equals(".")){
@@ -272,10 +271,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             double sueldoBrutovalido = Double.parseDouble(sueldoBruto);
-            if(sueldoBrutovalido < 0){
-                return false;
+            if(sueldoBrutovalido >= 1){
+                    return true;
+                }else{
+                    return false;
             }
-            return true;
+
         }catch (Exception ex){
             return false;
         }
