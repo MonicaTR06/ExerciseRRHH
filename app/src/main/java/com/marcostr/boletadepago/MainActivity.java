@@ -266,12 +266,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
 
-            if(String.valueOf(sueldoBruto.charAt(0)).equals("0")){
-                return false;
-            }
-
-
-            if(String.valueOf(sueldoBruto.charAt(0)).equals(".")){
+            String primerCaracter = String.valueOf(sueldoBruto.charAt(0));
+            if(primerCaracter.equals("0") || primerCaracter.equals(".")){
                 return false;
             }
 
